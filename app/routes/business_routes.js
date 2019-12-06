@@ -29,7 +29,7 @@ const router = express.Router()
 
 // INDEX
 // GET /business
-router.get('/businesses', requireToken, (req, res, next) => {
+router.get('/businesses', (req, res, next) => {
   Business.find()
     .then(business => {
       // `business` will be an array of Mongoose documents
@@ -45,7 +45,7 @@ router.get('/businesses', requireToken, (req, res, next) => {
 
 // SHOW
 // GET /business/5a7db6c74d55bc51bdf39793
-router.get('/businesses/:id', requireToken, (req, res, next) => {
+router.get('/businesses/:id', (req, res, next) => {
   // req.params.id will be set based on the `:id` in the route
   Business.findById(req.params.id)
     .then(handle404)
@@ -57,7 +57,7 @@ router.get('/businesses/:id', requireToken, (req, res, next) => {
 
 // CREATE
 // POST /business
-router.post('/businesses', requireToken, (req, res, next) => {
+router.post('/businesses', (req, res, next) => {
   // set owner of new business to be current user
   req.body.business.owner = req.user.id
 

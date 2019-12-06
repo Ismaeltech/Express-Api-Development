@@ -9,9 +9,13 @@ curl "${API}${URL_PATH}/${ID}" \
   --header "Content-Type: application/json" \
 --header "Authorization: Bearer ${TOKEN}" \
 --data '{
-    "example": {
-      "text": "'"${TEXT}"'"
-    }
-  }'
+  "business": {
+    "name": "'"${NAME}"'",
+    "location": "'"${LOCATION}"'",
+    "industry": "'"${INDUSTRY}"'",
+    "proposal": "'"${PROPOSAL}"'",
+    "deadline": "'"${DEADLINE}"'"
+  }
+}'
 
 echo
