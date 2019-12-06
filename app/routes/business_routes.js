@@ -57,7 +57,7 @@ router.get('/businesses/:id', (req, res, next) => {
 
 // CREATE
 // POST /business
-router.post('/businesses', (req, res, next) => {
+router.post('/businesses', requireToken, (req, res, next) => {
   // set owner of new business to be current user
   req.body.business.owner = req.user.id
 
@@ -97,7 +97,7 @@ router.patch('/businesses/:id', requireToken, removeBlanks, (req, res, next) => 
 
 // DESTROY
 // DELETE /businesss/5a7db6c74d55bc51bdf39793
-router.delete('/businesses/:id', requireToken, (req, res, next) => {
+router.delete('/businesses/:id', (req, res, next) => {
   Business.findById(req.params.id)
     .then(handle404)
     .then(business => {
